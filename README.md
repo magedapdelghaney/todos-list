@@ -9,6 +9,7 @@
 
 for build the project :-
 
+* cd todos-project
 * npm install
 * ng serve --open
 
