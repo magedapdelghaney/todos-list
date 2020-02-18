@@ -1,2 +1,20 @@
-# todos-list
-user's todo lists, each user has his todo list which is different from other users. and we have the privileges to create, update or delete items in user's data ( as admins ).
+# Todos List Project
+
+## Table of Contents
+
+* [Instructions](#instructions)
+* [Technologies](#Technologies)
+
+## Instructions
+
+for build the project :-
+
+* npm install
+* ng serve --open
+
+## Technologies
+
+* Angualr
+* Typscript
+* Bootsrab
+* fontawosme
