@@ -1,0 +1,115 @@
+<div *ngIf="this.usersDataStatues === 'loading' ">
+  <div class="spinner-border  mt-5" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+
+</div>
+<div class="todos-list-main justify-content-center" *ngIf="this.usersDataStatues === 'success'">
+
+
+
+  <form>
+    <div class="form-row justify-content-md-center mt-5">
+      <div class="col-auto my-1">
+
+        <select class="custom-select mr-sm-5" id="inlineFormCustomSelect" (change)="getTodos($event.target.value)">
+          <option selected>Select user name</option>
+
+          <option value="{{user.id}}" *ngFor="let user of users">{{user.name}}</option>
+
+        </select>
+      </div>
+
+    </div>
+  </form>
+
+
+  <div class="align-self-center" *ngIf="this.todosDataStatues === 'loading' ">
+    <div class="spinner-border  mt-5" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+  </div>
+
+  <div class="todos-list-data " *ngIf="this.todosDataStatues === 'success' ">
+
+
+    <nav class="mt-5">
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-todos-tab" data-toggle="tab" href="#nav-todos" role="tab"
+          aria-controls="nav-todos" aria-selected="true">Todos</a>
+        <a class="nav-item nav-link" id="nav-history-tab" data-toggle="tab" href="#nav-history" role="tab"
+          aria-controls="nav-history" aria-selected="false">History</a>
+      </div>
+    </nav>
+
+
+
+    <div class="tab-content scroll-section" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-todos" role="tabpanel" aria-labelledby="nav-todos-tab">
+
+        <div class="list-wrapper">
+          <ul class="d-flex flex-column-reverse todo-list">
+
+
+            <li *ngFor="let todo of todos" [ngClass]="{completed: todo.completed}">
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="checkbox" value="todo.id" [checked]="todo.completed" (change)="updateTodos(todo.id)"
+                    type="checkbox">
+                  {{todo.title}} <i class="input-helper"></i>
+
+                  <!-- <button (click)='removeTodo(todo.id)' type="button" class="float-right" aria-label="Close">
+                    <fa-icon [icon]="faEdit"></fa-icon>
+                  </button> -->
+                  <button (click)='removeTodo(todo.id)' type="button" class="btn btn-labeled float-right"
+                    aria-label="Close">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                  </button>
+
+
+
+                </label>
+
+
+              </div>
+
+            </li>
+
+            <!-- <li>
+              <button type="button" (click)="addTodo()" class="btn btn-labeled btn-primary float-right mb-2">
+                <span class="btn-label">Add todo</span>
+              </button>
+            </li> -->
+          </ul>
+        </div>
+
+        <div *ngIf="!todos">
+          No Todos listed
+        </div>
+
+
+      </div>
+      <div class="tab-pane fade" id="nav-history" role="tabpanel" aria-labelledby="nav-history-tab">
+
+        <ul class="list-group">
+
+          <li class="list-group-item list-group-item-{{item.type}} mt-2" *ngFor="let item of historyList">
+            <span>{{item.userName}} </span>
+            <span>{{item.action}} </span>
+            <span>Todo #{{item.todId}} </span>
+            in
+
+            {{item.date}}
+
+          </li>
+        </ul>
+
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
